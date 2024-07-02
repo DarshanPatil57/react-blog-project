@@ -3,19 +3,18 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import { Provider } from 'react-redux'
-import store from './store/store.js'
+import store from './Store/store.js'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './pages/Home.jsx'
-import { AuthLayout, Login } from './components/index.js'
+import { AuthLayout, Login } from './Components/index.js'
 
 
 import AddPost from "./pages/AddPost";
 import Signup from './pages/Signup'
-import EditPost from "./pages/EditPost";
+import EditPost from "./pages/EditPost.jsx";
 
-import Post from "./pages/Post";
-
-import AllPosts from "./pages/AllPosts";
+import Post from './pages/Post.jsx'
+import AllPost from "./pages/AllPost.jsx";
 
 const router = createBrowserRouter([
   {
@@ -47,7 +46,7 @@ const router = createBrowserRouter([
             element: (
                 <AuthLayout authentication>
                     {" "}
-                    <AllPosts />
+                    <AllPost />
                 </AuthLayout>
             ),
         },

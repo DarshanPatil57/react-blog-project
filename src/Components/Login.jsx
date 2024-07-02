@@ -1,28 +1,27 @@
-import React,{useState} from 'react'
-import { Link,useNavigate } from 'react-router-dom'
-import authSlice, {login as authLogin} from '../Store/authSlice'
-import { Button,Input,Logo } from './index'
-import { useDispatch } from 'react-redux'
-import authService from '../Appwrite/auth'
-import { useForm } from 'react-hook-form'
-
+import React, {useState} from 'react'
+import {Link, useNavigate} from 'react-router-dom'
+import { login as authLogin } from '../Store/authSlice'
+import {Button, Input, Logo} from "./index"
+import {useDispatch} from "react-redux"
+import authService from "../Appwrite/auth"
+import {useForm} from "react-hook-form"
 
 function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const {register,handleSubmit} = useForm()
-    const [error,setError] = useState("")
+    const {register, handleSubmit} = useForm()
+    const [error, setError] = useState("")
 
-    const login = async(data) =>{
+    const login = async(data) => {
         setError("")
-        try{
-           const session =  await authSlice.login(data)
-           if(session){
-            const userData = await authService.getCurrentUser()
-            if(userData) dispatch(authLogin(userData))
+        try {
+            const session = await authService.login(data)
+            if (session) {
+                const userData = await authService.getCurrentUser()
+                if(userData) dispatch(authLogin(userData));
                 navigate("/")
-           }
-        } catch(error){
+            }
+        } catch (error) {
             setError(error.message)
         }
     }
